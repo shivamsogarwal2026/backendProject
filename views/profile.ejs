@@ -1,0 +1,66 @@
+<% include ./partials/header.ejs %>
+<div class="profile w-full min-h-screen bg-zinc-800 text-white pt-1 px-20 py-20">
+
+    <!-- this form is a part of multer to upload a file -->
+    <form id="uploadform" hidden action="/fileupload" method="post" enctype="multipart/form-data">
+        <input type="file" name="image">
+    </form>
+
+    <div class="profdets flex justify-center items-center mt-20 ">
+        <div class="relative">
+            <span id="uploadicon" class="w-8 h-8 absolute bottom-0 right-0 rounded-full flex items-center justify-center bg-zinc-200">
+                <i class=" text-zinc-800 ri-pencil-fill"></i>
+            </span>
+            <div class="w-32 h-32 bg-zinc-200 rounded-full overflow-hidden">
+                <!-- Check if user.profileImage exists before rendering -->
+                <img class="w-full h-full object-cover" src="/images/uploads/<%= user.profileImage ? user.profileImage : 'placeholder.jpg' %>" alt="Profile Image">
+            </div>
+        </div>
+        
+        <div class="flex-col justify-center items-start items-center px-20">
+            <h1 class="text-3xl font-semibold mt-2"><%= user.name ? user.name : 'Unknown' %></h1>
+            <h3 class="text-md mt-2 mb-2">@<%= user.username ? user.username : 'unknown_user' %></h3>
+            <!-- <a href="/edit" class="mt-45 px-7 py-2 bg-zinc-700 rounded-full text-xs font-semibold">Edit</a> -->
+            <a href="/add" class="px-10 py-2 rounded-lg bg-red-700 text-xs font-semibold mt-7">Add new post</a>
+        </div>
+    </div>
+
+    
+    <div class="cards flex gap-10 px-10 pt-10 mt-20 border-t-2 border-zinc-700 px-20 py-20">
+        <div class="card flex flex-wrap justify-evenly gap-10">
+            <!-- Check if user.posts exists and if it has any items before accessing -->
+            <% if (user.posts && user.posts.length > 0) { %>
+                <% user.posts.forEach(function(post) { %>
+                    <div class="card w-64">
+                        <div class="w-full h-80 bg-sky-200 rounded-lg overflow-hidden">
+                            <img class="w-full h-full object-cover" src="/images/uploads/<%= post.image %>" alt="<%= post.title %>">
+                        </div>
+                        <h5 class="mt-2 text-sm"><%= post.title %></h5>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>No posts uploaded yet.</p>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Wait for the DOM to be fully loaded before executing the script
+    document.addEventListener("DOMContentLoaded", function() {
+        // Change profile picture on clicking the icon in the bottom corner of the profile picture
+        document.querySelector('#uploadicon').addEventListener("click",function(){
+            document.querySelector('#uploadform input').click();
+        });
+
+        document.querySelector("#uploadform input").addEventListener("change", function(){
+            document.querySelector("#uploadform").submit();
+        });
+    });
+</script>
+
+
+<% include ./partials/footer.ejs %>
+
+
+

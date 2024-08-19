@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+    rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="w-full h-screen bg-center bg-cover bg-[url(https://i.ytimg.com/vi/dBJX1T2BQnE/maxresdefault.jpg)] flex items-center justify-center">
+        <div class="w-96 h-[60vh] bg-white px-10 py-10 rounded-md ">
+            <h1 class="text-3xl text-center font-semibold text-zinc-700 tracking-tighter capitalize leading-none ">Welcome to Backend.</h1>
+
+            <% if (error.length > 0) { %>
+                <p class="error"><%= error %></p>
+              <% } %>
+              
+            <form action="/login" method="post">
+                <input type="text" class="block rounded-md border-2 mt-2 w-full px-3 py-2" name="username" placeholder="username">
+                <input type="password" class="block rounded-md border-2 mt-2 w-full px-3 py-2" name="password" placeholder="password">
+                <input type="submit" class="block border-2 mt-2 w-full px-3 py-2 bg-zinc-700 text-white rounded-[30px]" name="Login" value="Log in">
+                <a href="#" class="mt-2 font-semibold text-zinc-500 inline-block">Forgot Password</a>
+                <p class="text-xs font-semibold text-zinc-700 mt-7 text-center mx-auto w-2/3">By continuing, you agree to Pinterest's Terms of Service; Opens a new tab and acknowledge that you've read our Privacy Policy; Opens a new tab. Notice at collection; Opens a new tab.</p>
+            </form>
+            <a class="inline-block mt-7 text-sm font-semibold text-zinc-700 text-center w-full" href="/register">Don't have an account?</a>
+        </div>
+    </div>
+<% include ./partials/footer.ejs %>

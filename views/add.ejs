@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+    rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="w-full h-screen bg-center bg-cover bg-[url(/images/frontImages/img6.jpg)] flex items-center justify-center">
+        <div class="w-96 h-[60vh] bg-white px-10 py-10 rounded-md ">
+            <h1 class="text-3xl text-center font-semibold text-blue-600 tracking-tighter capitalize leading-none ">Create your Post.</h1>
+
+            
+              
+            <form action="/createpost" method="post" enctype="multipart/form-data">
+                <input class="block  pt-5 pb-2" type="file" name="postimage">
+                <input type="text" class="block rounded-md border-2 mt-2 w-full px-3 py-2" name="Title" placeholder="title">
+                <input type="text" class="block rounded-md border-2 mt-2 w-full px-3 py-2" name="Description" placeholder="Description">
+                <input type="submit" class="block border-2 mt-2 w-full px-3 py-2 mt-5 bg-blue-600 text-white rounded-[30px]" name="Create" value="Create Post">
+                <a href="/profile" class="mt-2 font-semibold text-zinc-500 inline-block">Cancel Upload</a>
+            </form>
+            <a class="inline-block mt-7 text-sm font-semibold text-zinc-700 text-center w-full" href="/profile">Want to Upload Later?</a>
+        </div>
+    </div>
+<% include ./partials/footer.ejs %>
